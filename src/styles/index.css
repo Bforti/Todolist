@@ -10,3 +10,7 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+body{
+    height: 100vh;
+    background-color: lightyellow;
+}
