@@ -22,20 +22,21 @@ const Home = () => {
 	const guardandotareas=(event)=>{
 		
 		if(event.key=="Enter"){
+			if(initialTarea.trim !== ""){
 			setTareaCulminada([...tareaCulminada, initialTarea])
             setInitialTarea(initial)
 		}
+		else{
+			console.log("error")
+		}
+			}
+			
 		
 	}
-	const deleteTask=(event)=>{
-    let newArr = setTareaCulminada.map((item,index)=>{
-		
-		item.pop()
-
-		event.stopPropagation();
-
-	})
-	return newArr;
+	const deleteTask=(id)=>{
+    let newArr = tareaCulminada.filter((item,index)=>index!==id)
+    
+	return setTareaCulminada(newArr)
 
 
 
@@ -57,17 +58,19 @@ const Home = () => {
 			{tareaCulminada.map((item,index)=>{
 				return(
 					<li key={index} 
-					    className="list-inline-item d-flex justify-content-between"
+					    className="list-inline-item d-flex justify-content-between p-3"
+						
 						>
-						<div className="m-2">
-						<i className="fa-solid fa-check m-1"></i>
+						<div>
+						<i className="fa-solid fa-check me-1"></i>
 						{item.label}
 						</div>
 						<button
 					    type="button" 
-						className="btn-close btn-outline-danger m-2 me-0"
+						className="btn-close btn-outline-danger"
 						aria-label="Close"
-						onClick={deleteTask}></button>
+						onClick={()=>deleteTask(index)}
+						></button>
 					</li>	
 
 
